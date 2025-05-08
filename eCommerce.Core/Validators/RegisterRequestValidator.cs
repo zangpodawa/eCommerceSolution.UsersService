@@ -23,10 +23,11 @@ public class RegisterRequestValidator : AbstractValidator<RegisterRequest>
 
         //PersonName
         RuleFor(temp => temp.PersonName)
-            .NotEmpty().WithMessage("Person name is required");
+            .NotEmpty().WithMessage("PersonName can't be blank")
+            .Length(1, 50).WithMessage("Person Name should be 1 to 50 characters long");
 
         //Gender
         RuleFor(temp => temp.Gender)
-            .NotNull().WithMessage("Gender is required");
+            .IsInEnum().WithMessage("Invalid gender option");
     }
 }
